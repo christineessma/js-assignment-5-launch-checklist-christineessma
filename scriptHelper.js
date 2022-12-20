@@ -1,5 +1,5 @@
 // Write your helper functions here!
-require('isomorphic-fetch');
+require ('isomorphic-fetch');
 
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
    // Here is the HTML formatting for our mission target div.
@@ -14,7 +14,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
                 </ol>
                 <img src="">
    */
-  let div = document.getElementById("missionTarget")
+  let div = document.getElementById("missionTarget");
    div.innerHTML = 
    `<h2>Mission Destination</h2><ol>
          <li>Name: ${name}</li>
@@ -25,9 +25,9 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 }
 
 function validateInput(testInput) {
-   if (testInput === "") return "Empty";
-   else if (typeof testInput == Number) {return "Is a Number"}
-   else {return "Not a Number"}
+   if (testInput === "") {return "Empty";}
+   else if (typeof testInput == Number) {return "Is a Number";}
+   else {return "Not a Number";}
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
@@ -35,46 +35,47 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     let copilotStatus = document.getElementById("copilotStatus");
     let fuelStatus = document.getElementById("fuelStatus");
     let cargoStatus = document.getElementById("cargoStatus");
-    let launchStatus = document.getElementById("launchStatus");
-}
+    let h2 = document.getElementById("launchStatus");
 
-if (validateInput(pilot) === "Empty" || validateInput(copilot) === "Empty" || validateInput(fuelLevel) === "Empty" || validateInpute(cargoLevel) === "Empty")  {alert("All fields required.");}
-else if (validateInput(pilot) === "Is a Number" || validateInput(copilot) === "Is a number" || validateInput(fuelLevel) === "Not a number" || validateInpute(cargoLevel) === "Not a number")  {alert("Valid info required.");}
+if (validateInput(pilot) === "Empty" || validateInput(copilot) === "Empty" || validateInput(fuelLevel) === "Empty" || validateInput(cargoLevel) === "Empty")  {alert("All fields required.");}
+else if (validateInput(pilot) === "Is a Number" || validateInput(copilot) === "Is a number" || validateInput(fuelLevel) === "Not a number" || validateInput(cargoLevel) === "Not a number")  {alert("Valid info required.");}
 
  if (fuelLevel < 10000 && cargoLevel > 10000 ) {
-    list.status.visibility = "visible";
-    pilotStatus.innerHTML = 'Pilot ${pilot} ready for launch.';
-    copilotStatus.innerHTML = 'Copilot ${copilot} ready for launch.';
+    list.style.visibility = "visible";
+    h2.innerHTML = "Shuttle not ready for launch.";
+    h2.style.color = "red";
+    pilotStatus.innerHTML = `Pilot ${pilot} ready for launch.`;
+    copilotStatus.innerHTML = `Copilot ${copilot} ready for launch.`;
     fuelStatus.innerHTML = "Fuel level too low for launch.";
     cargoStatus.innerHTML = "Cargo mass too heavy for launch.";
-    launchStatus.innerHTML = "Shuttle not ready for launch.";
-    launchStatus.style.color = "red";
-} else if (fuelLevel < 10000 && cargoLevel <= 10000) {
-    list.status.visibility = "visible";
-    pilotStatus.innerHTML = 'Pilot ${pilot} ready for launch.';
-    copilotStatus.innerHTML = 'Copilot ${copilot} ready for launch.';
-    fuelStatus.innerHTML = "Fuel level too low for launch.";
-    cargoStatus.innerHTML = "Cargo mass low enough for launch.";
-    launchStatus.innerHTML = "Shuttle not ready for launch.";
-    launchStatus.style.color = "red";
-} else if (fuelLevel >= 10000 && cargoLevel <= 10000) {
-    list.status.visibility = "visible";
-    pilotStatus.innerHTML = 'Pilot ${pilot} ready for launch.';
-    copilotStatus.innerHTML = 'Copilot ${copilot} ready for launch.';
-    fuelStatus.innerHTML = "Fuel level high enough for launch.";
-    cargoStatus.innerHTML = "Cargo mass too heavy for launch.";
-    launchStatus.innerHTML = "Shuttle not ready for launch."
-    launchStatus.style.color = "red";
-} else {
-    list.status.visibility = "visible";
-    pilotStatus.innerHTML = 'Pilot ${pilot} ready for launch.';
-    copilotStatus.innerHTML = 'Copilot ${copilot} ready for launch.';
-    fuelStatus.innerHTML = "Fuel level high enough for launch.";
-    cargoStatus.innerHTML = "Cargo mass low enough for launch.";
-    launchStatus.innerHTML = "Shuttle ready for launch."
-}
     
+} else if (fuelLevel < 10000 && cargoLevel <= 10000) {
+    list.style.visibility = "visible";
+    h2.innerHTML = "Shuttle not ready for launch.";
+    h2.style.color = "red";
+    pilotStatus.innerHTML = `Pilot ${pilot} ready for launch.`;
+    copilotStatus.innerHTML = `Copilot ${copilot} ready for launch.`;
+    fuelStatus.innerHTML = "Fuel level too low for launch.";
+    cargoStatus.innerHTML = "Cargo mass low enough for launch.";
+    
+} else if (fuelLevel >= 10000 && cargoLevel <= 10000) {
+    list.style.visibility = "visible";
+    h2.innerHTML = "Shuttle not ready for launch."
+    h2.style.color = "red";
+    pilotStatus.innerHTML = `Pilot ${pilot} ready for launch.`;
+    copilotStatus.innerHTML = `Copilot ${copilot} ready for launch.`;
+    fuelStatus.innerHTML = "Fuel level high enough for launch.";
+    cargoStatus.innerHTML = "Cargo mass too heavy for launch.";
 
+} else {
+    list.style.visibility = "visible";
+    h2.innerHTML = "Shuttle ready for launch."
+    pilotStatus.innerHTML = `Pilot ${pilot} ready for launch.`;
+    copilotStatus.innerHTML = `Copilot ${copilot} ready for launch.`;
+    fuelStatus.innerHTML = "Fuel level high enough for launch.";
+    cargoStatus.innerHTML = "Cargo mass low enough for launch.";
+}
+}
 
 
 async function myFetch() {
@@ -93,5 +94,5 @@ function pickPlanet(planets) {
 module.exports.addDestinationInfo = addDestinationInfo;
 module.exports.validateInput = validateInput;
 module.exports.formSubmission = formSubmission;
-module.exports.pickPlanet = pickPlanet; 
+module.exports.pickPlanet = pickPlanet;
 module.exports.myFetch = myFetch;
