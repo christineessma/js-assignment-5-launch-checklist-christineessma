@@ -1,7 +1,7 @@
 // Write your helper functions here!
 require ('isomorphic-fetch');
 
-function addDestinationInfo(document, name, diameter, star, distance, moons, image) {
+function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
    // Here is the HTML formatting for our mission target div.
    /*
                 <h2>Mission Destination</h2>
@@ -24,7 +24,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
         <li>Distance from Earth: ${distance}</li>
         <li>Number of Moons: ${moons}</li>
     </ol>
-    <img src="${image}"> `
+    <img src="${imageUrl}"> `
 }
 
 function validateInput(testInput) {
